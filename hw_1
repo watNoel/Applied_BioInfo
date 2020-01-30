@@ -18,4 +18,16 @@ grep -c "gene" col3.txt ### or alternatively grep "gene" col3.txt | wc -l
 
 # this gives the simple ouptut 681, which should be the number of genes in chrII. note that all entries
 ## of column 3 which contain the word gene, e.g tRNAgene are also included, but I think they are genes
+# To count the GC content, I use the following approach. I wish to delete all characters from the file except Gs and
+# Cs, then count the number of characters. Note 2 things. The header is first removed using sed,
+# and I believe a new line is interpreted as a character som i remove \n in the "tr -d" command. 
+# the code to run is this
+
+cd .. ### to get back to Homework directory
+sed 's/>.*//' data/S288C_reference_sequence_R64-2-1_20150113.fsa | tr "G" "C" > test.txt  # to remove header
+tr -d "AT\n" < test.txt | wc -m  # gives the count of G/C. -m is for characters..
+## the value is 4637676. This was a very strange method, but could not make grep work.
+ 
+
+
 
