@@ -1,2 +1,8 @@
 ## This is the first homework
-#I add this line in a separate branch
+#I add this line in a separate bran
+# i begin by downloading the required data and decompressing it using the commands
+wget https://downloads.yeastgenome.org/sequence/S288C_reference/genome_releases/S288C_reference_genome_Current_Release.tgz
+
+### followed by 
+tar -xzvf S288C_reference_genome_Current_Release.tgz
+### now i rename the created directory "data" for convenience, i will try not to upload this to github.
