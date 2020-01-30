@@ -5,4 +5,17 @@ wget https://downloads.yeastgenome.org/sequence/S288C_reference/genome_releases/
 
 ### followed by 
 tar -xzvf S288C_reference_genome_Current_Release.tgz
-### now i rename the created directory "data" for convenience, i will try not to upload this to github.
+### now i rename the created directory "data" for convenience, i will try not to upload this to github
+
+mv S288C_reference_genome_R64-2-1_20150113 data
+## move in to new  directory
+cd data
+## now i try to count the number of genes, as follows. note that gene is written in column 3 of gff file
+
+grep "chrII" saccharomyces_cerevisiae_R64-2-1_20150113.gff | cut -f 3 > col3.txt
+## this extracts all coulmn 3 entries of lines which correspond to 2nd chromosome. We follow it by
+grep -c "gene" col3.txt ### or alternatively grep "gene" col3.txt | wc -l 
+
+# this gives the simple ouptut 681, which should be the number of genes in chrII. note that all entries
+## of column 3 which contain the word gene, e.g tRNAgene are also included, but I think they are genes
+
