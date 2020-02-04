@@ -43,7 +43,9 @@ grep -c ">" Y55_JRIF00000000_SGD_cds.fsa
 ## more nicely, the result is
 echo "Number of ORFs in Y55.. is $(grep -c ">" Y55_JRIF00000000_SGD_cds.fsa)"
 
-# this is in comparison to the reference strain where the number of OTUs is 6713
+# this is in comparison to the reference strain where the number of OTUs is 6713, note that the file is
+# in the data directory
 echo "Number of ORFs in Reference is $(grep -c ">" data/orf_coding_all_R64-2-1_20150113.fasta)" 
 
 
+# now for the final part, comparing 2 text files, namely the fasta from reference and fsa from y55
