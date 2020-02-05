@@ -43,9 +43,20 @@ grep -c ">" Y55_JRIF00000000_SGD_cds.fsa
 ## more nicely, the result is
 echo "Number of ORFs in Y55.. is $(grep -c ">" Y55_JRIF00000000_SGD_cds.fsa)"
 
-# this is in comparison to the reference strain where the number of OTUs is 6713, note that the file is
+# this is in comparison to the reference strain where the number of ORFs is 6713, note that the file is
 # in the data directory
 echo "Number of ORFs in Reference is $(grep -c ">" data/orf_coding_all_R64-2-1_20150113.fasta)" 
 
-
 # now for the final part, comparing 2 text files, namely the fasta from reference and fsa from y55
+
+
+# this is how to get all unique orfs in the tested strain, for example YHL044N 
+grep ">" Y55_JRIF00000000_SGD_cds.fsa | sed 's/_.*//' | sed '/>UNDEF/d' | sort > orfs_Y55.txt 
+
+# this is how to get the similar information form the reference, starting from the same directory as before. note that i delimit with space to get only first column containing the unique identifier.
+grep ">" data/orf_coding_all_R64-2-1_20150113.fasta | cut -f 1 --delimiter=" " | sort > orfs_ref.txt 
+
+## now to count the common entries in these files, I use the comm tool and paste the number of lines to the terminal via wc -l
+comm -12 orfs_Y55.txt orfs_ref.txt | wc -l
+# This equates 5168 common orfs.
+
