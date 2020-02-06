@@ -24,10 +24,13 @@ grep -c "gene" col3.txt ### or alternatively grep "gene" col3.txt | wc -l
 # the code to run is this
 
 cd .. ### to get back to Homework directory
-sed 's/>.*//' data/S288C_reference_sequence_R64-2-1_20150113.fsa | tr "G" "C" > test.txt  # to remove header
-tr -d "AT\n" < test.txt | wc -m  # gives the count of G/C. -m is for characters..
+sed 's/>.*//' data/S288C_reference_sequence_R64-2-1_20150113.fsa | tr "G" "C" > ATGC.txt  # to remove header
+tr -d "AT\n" < ATGC.txt | wc -m  # gives the count of G/C. -m is for characters..
 ## the value is 4637676. This was a very strange method, but could not make grep work.
- 
+## this command instead gives total number of bases, since it is all characters except the newline \n
+tr -d "\n" < ATGC.txt | wc -m
+# this amounts to 12157105 bases. This gives the percentage 38.1478649728 % GC content 
+  
 ### now to continue on the file Y55_JRIF00...., begin by fetching from internet and unzipping using gunzip
 wget https://downloads.yeastgenome.org/sequence/strains/Y55/Y55_SGD_2015_JRIF00000000/Y55_JRIF00000000_SGD_cds.fsa.gz
 gunzip Y55_JRIF00000000_SGD_cds.fsa.gz
@@ -36,8 +39,13 @@ gunzip Y55_JRIF00000000_SGD_cds.fsa.gz
 
 sed 's/>.*//' Y55_JRIF00000000_SGD_cds.fsa | tr "G" "C" > test.txt
 tr -d "AT\n" < test.txt | wc -m 
-### this gives the count 3196763, thus the GC content is -1440913 less than in the previous excercise.
+# this gives the count 3196763, thus the GC content is -1440913 less than in the previous excercise.
 
+# this gives the total ATGC content as in previous exerise
+tr -d "\n" < test.txt | wc -m 
+# it equates 8078658 bases, thus the percentage of GC in this genome is 39%, fairly similar to the previous..
+
+ 
 # to count the number of ORF:s I use the Grep functionality -c, which gives the output directly in the terminal, note that all ORFs are preceded by a <
 grep -c ">" Y55_JRIF00000000_SGD_cds.fsa 
 ## more nicely, the result is
@@ -58,5 +66,4 @@ grep ">" data/orf_coding_all_R64-2-1_20150113.fasta | cut -f 1 --delimiter=" " |
 
 ## now to count the common entries in these files, I use the comm tool and paste the number of lines to the terminal via wc -l
 comm -12 orfs_Y55.txt orfs_ref.txt | wc -l
-# This equates 5168 common orfs.
-
+# This equates 5168 common orfs. 
