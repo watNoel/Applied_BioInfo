@@ -69,5 +69,5 @@ grep ">" data/orf_coding_all_R64-2-1_20150113.fasta | cut -f 1 --delimiter=" " |
 
 ## now to count the common entries in these files, I use the comm tool and paste the number of lines to the terminal via wc -l
 comm -12 orfs_Y55.txt orfs_ref.txt | wc -l
-# This equates 5168 common orfs.
+# This equates 5168 common orfs. Here I add a line to test if git pull works, unrelated to project.
 
