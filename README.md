@@ -12,3 +12,7 @@ The solutions to the second homework are found in the files:
 *python_hw1_alignment.ipynb*,    
 *python_hw2_assembly.ipynb*	and   
 *python_hw3_indexing.ipynb*.
+
+### Homework 3
+The third homework and some accompanying files are found in the HW3 folder
+
